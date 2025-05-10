@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>Lista de Clínicas</title>
+</head>
+<body>
+<header th:replace="fragments::header"></header>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 border-bottom">Lista de Clínicas</h1>
+    <div class="d-flex mt-3 mb-4">
+      <a class="btn btn-secondary ms-auto" th:href="@{'/clinicas/new'}">Nuevo</a>
+      <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+    </div>
+    <div class="m-md-3">
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Número de Contacto</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="clinica : ${clinicas}">
+        <td th:text="${clinica.getId()}"></td>
+        <td th:text="${clinica.getName()}"></td>
+        <td th:text="${clinica.getAddress()}"></td>
+        <td th:text="${clinica.getPhoneNumber()}"></td>
+
+        <td><a class="btn btn-primary"
+               th:href="@{'/clinicas/edit?id=' + ${clinica.getId}}">Editar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
